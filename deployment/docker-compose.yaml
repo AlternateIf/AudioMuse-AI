@@ -26,16 +26,31 @@ services:
 
   # AudioMuse-AI Flask application service
   audiomuse-ai-flask:
-    image: ghcr.io/neptunehub/audiomuse-ai:latest # Reflects deployment.yaml
+    # optionally choose between the ARM/Intel image audiomuse-ai:latest and the experimental nvidia image audiomuse-ai:latest-nvidia
+    image: ghcr.io/neptunehub/audiomuse-ai:latest # audiomuse-ai:latest-nvidia
     container_name: audiomuse-ai-flask-app
     ports:
       - "8000:8000" # Map host port 8000 to container port 8000
     environment:
       SERVICE_TYPE: "flask" # Tells the container to run the Flask app
+      # Jellyfin specific settings (comment these with # if you are using Emby, Navidrome, or Lyrion)
       MEDIASERVER_TYPE: "jellyfin" # Specify the media server type
       JELLYFIN_USER_ID: "${JELLYFIN_USER_ID}"
       JELLYFIN_TOKEN: "${JELLYFIN_TOKEN}"
       JELLYFIN_URL: "${JELLYFIN_URL}"
+      # EMBY specific settings (uncomment these if you are using Emby) #
+      #MEDIASERVER_TYPE: "emby" # Specify the media server type
+      #EMBY_USER_ID: "${EMBY_USER_ID}"
+      #EMBY_TOKEN: "${EMBY_TOKEN}"
+      #EMBY_URL: "${EMBY_URL}"
+      # LYRION specific settings (uncomment these if you are using Lyrion) #
+      #MEDIASERVER_TYPE: "lyrion"
+      #LYRION_URL: "${LYRION_URL}"
+      # NAVIDROME specific settings (uncomment these if you are using Navidrom) #
+      #MEDIASERVER_TYPE: "navidrome"
+      #NAVIDROME_URL: "${NAVIDROME_URL}"
+      #NAVIDROME_USER: "${NAVIDROME_USER}"
+      #NAVIDROME_PASSWORD: "${NAVIDROME_PASSWORD}"
       # DATABASE_URL is now constructed by config.py from the following:
       POSTGRES_USER: ${POSTGRES_USER:-audiomuse}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-audiomusepassword}
@@ -55,14 +70,29 @@ services:
 
   # AudioMuse-AI RQ Worker service
   audiomuse-ai-worker:
-    image: ghcr.io/neptunehub/audiomuse-ai:latest # Reflects deployment.yaml
+    # optionally choose between the ARM/Intel image audiomuse-ai:latest and the experimental nvidia image audiomuse-ai:latest-nvidia
+    image: ghcr.io/neptunehub/audiomuse-ai:latest # audiomuse-ai:latest-nvidia
     container_name: audiomuse-ai-worker-instance
     environment:
       SERVICE_TYPE: "worker" # Tells the container to run the RQ worker
+      # Jellyfin specific settings (comment these with # if you are using Emby, Navidrome, or Lyrion)
       MEDIASERVER_TYPE: "jellyfin" # Specify the media server type
       JELLYFIN_USER_ID: "${JELLYFIN_USER_ID}"
       JELLYFIN_TOKEN: "${JELLYFIN_TOKEN}"
       JELLYFIN_URL: "${JELLYFIN_URL}"
+      # EMBY specific settings (uncomment these if you are using Emby) #
+      #MEDIASERVER_TYPE: "emby" # Specify the media server type
+      #EMBY_USER_ID: "${EMBY_USER_ID}"
+      #EMBY_TOKEN: "${EMBY_TOKEN}"
+      #EMBY_URL: "${EMBY_URL}"
+      # LYRION specific settings (uncomment these if you are using Lyrion) #
+      #MEDIASERVER_TYPE: "lyrion"
+      #LYRION_URL: "${LYRION_URL}"
+      # NAVIDROME specific settings (uncomment these if you are using Navidrom) #
+      #MEDIASERVER_TYPE: "navidrome"
+      #NAVIDROME_URL: "${NAVIDROME_URL}"
+      #NAVIDROME_USER: "${NAVIDROME_USER}"
+      #NAVIDROME_PASSWORD: "${NAVIDROME_PASSWORD}"
       # DATABASE_URL is now constructed by config.py from the following:
       POSTGRES_USER: ${POSTGRES_USER:-audiomuse}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-audiomusepassword}
@@ -73,12 +103,23 @@ services:
       GEMINI_API_KEY: "${GEMINI_API_KEY}"
       MISTRAL_API_KEY: "${MISTRAL_API_KEY}"
       TEMP_DIR: "/app/temp_audio"
+      # uncomment below if you want to use the experimental nvidia image
+      #NVIDIA_VISIBLE_DEVICES: "0"
+      #NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
     volumes:
       - temp-audio-worker:/app/temp_audio # Volume for temporary audio files
     depends_on:
       - redis
       - postgres
     restart: unless-stopped
+    # uncomment below if you want to use the experimental nvidia image
+    #deploy:
+    #  resources:
+    #    reservations:
+    #      devices:
+    #        - driver: nvidia
+    #          device_ids: [ "0" ]
+    #          capabilities: [ gpu ]
 
 # Define volumes for persistent data and temporary files
 volumes:

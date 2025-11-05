@@ -63,11 +63,11 @@ There are 3 ways to spin up your AudioMuse instance. To learn more about them fo
 2. [Podman](docs/Podman.md)
 3. [Kubernetes](docs/Kubernetes.md)
 
-
 Want to learn more about what technologies AudioMuse uses? Check out the [Technologies](docs/Technologies.md)
 
 # Setup
 
+[comment]: <> (todo @AlternateIf finish this section)
 Info about setup here (e.g. first run analysis. hwo to access the web interface etc.)
 
 # Misc

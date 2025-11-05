@@ -5,7 +5,8 @@ version: '3.8'
 services:
   # AudioMuse-AI Worker service (GPU-dependent)
   audiomuse-ai-worker:
-    image: ghcr.io/neptunehub/audiomuse-ai:latest
+    # optionally choose between the ARM/Intel image audiomuse-ai:latest and the experimental nvidia image audiomuse-ai:latest-nvidia
+    image: ghcr.io/neptunehub/audiomuse-ai:latest # audiomuse-ai:latest-nvidia
     container_name: audiomuse-ai-worker-instance
     ports:
       - "8029:8000"  # Expose worker API
@@ -23,9 +24,20 @@ services:
       REDIS_URL: "${WORKER_REDIS_URL:-redis://redis:6379/0}"  # Set WORKER_REDIS_URL in .env for remote connections
       GEMINI_API_KEY: "${GEMINI_API_KEY}"
       TEMP_DIR: "/app/temp_audio"
+      # uncomment below if you want to use the experimental nvidia image
+      #NVIDIA_VISIBLE_DEVICES: "0"
+      #NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
     volumes:
       - temp-audio-worker:/app/temp_audio
     restart: unless-stopped
+    # uncomment below if you want to use the experimental nvidia image
+    #deploy:
+    #  resources:
+    #    reservations:
+    #      devices:
+    #        - driver: nvidia
+    #          device_ids: [ "0" ]
+    #          capabilities: [ gpu ]
 
 volumes:
   temp-audio-worker:
