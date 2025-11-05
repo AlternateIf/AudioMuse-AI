@@ -7,8 +7,6 @@
 AudioMuse-AI - Where Music Takes Shape
 </h1>
 
----
-
 <p align="center">
     <img src="screenshot/logo.png?raw=true" alt="AudioMuse-AI Logo" width="250">
 </p>
