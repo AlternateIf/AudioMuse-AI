@@ -22,7 +22,7 @@ allowing you to curate playlists for any mood or occasion without relying on ext
 <hr style="background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%);">
 
 
-## <span style="margin-bottom: 0; background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%) text;-webkit-text-fill-color: transparent;">Feature Overview</span>
+## Feature Overview
 
 - :link: **Clustering**  
   Automatically group sonically similar songs and create genre-defying playlists based on the music's actual sound. 
@@ -46,9 +46,9 @@ allowing you to curate playlists for any mood or occasion without relying on ext
 - :musical_score: **Song Alchemy**  
   Mix your ideal vibe, mark tracks as "ADD" or "SUBTRACT" to get a curated playlist and a 2D preview. Export the final selection directly to your media server.
 
-<hr style="background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%);">
+<hr>
 
-## <span style="margin-bottom: 0; background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%) text;-webkit-text-fill-color: transparent;">Hardware Requirements</span>
+## Hardware Requirements
 
 | Component               | Minimum Specification                            | Recommended Specification           |
 |-------------------------|--------------------------------------------------|-------------------------------------|
@@ -63,11 +63,11 @@ allowing you to curate playlists for any mood or occasion without relying on ext
 To check which hardware has already been confirmed working check [Tested Hardware and Configuration](docs/HARDWARE.md). 
 If you have tested the software on missing configurations feel free to create an issue, so we can add the configuration to the list.
 
-<hr style="background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%);">
+<hr>
 
-## <span style="margin-bottom: 0; background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%) text;-webkit-text-fill-color: transparent;">Installation</span>
+## Installation
 
-There are 3 ways to spin up your AudioMuse instance:
+There are 3 ways to spin up your AudioMuse instance. To learn more about them follow the links below
 1. [Docker](docs/Docker.md)
 2. [Podman](docs/Podman.md)
 3. [Kubernetes](docs/Kubernetes.md)
@@ -75,42 +75,43 @@ There are 3 ways to spin up your AudioMuse instance:
 
 Want to learn more about what technologies AudioMuse uses? Check out the [Technologies](docs/Technologies.md)
 
-<hr style="background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%);">
+<hr>
 
 
-## <span style="margin-bottom: 0; background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%) text;-webkit-text-fill-color: transparent;">Setup</span>
+## Setup
 
 Info about setup here (e.g. first run analysis. hwo to access the web interface etc.)
 
 <p align="center">
   <img src="screenshot/AM-AI-MAP.png?raw=true" alt="AudioMuse-AI Logo" width="480">
 </p>
-<hr style="background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%);">
 
-## <span style="margin-bottom: 0; background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%) text;-webkit-text-fill-color: transparent;">Misc</span>
+<hr>
+
+## Misc
 
 - **Frequently Asked Question (FAQ)** can be found [here](docs/FAQ.md).
 - The **Image Tagging Strategy** can be found [here](docs/Image-Tagging.md)
 
-<hr style="background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%);">
+<hr>
 
-## <span style="margin-bottom: 0; background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%) text;-webkit-text-fill-color: transparent;">How To Contribute</span>
+## How To Contribute
 
 Contributions, issues, and feature requests are welcome\!  
 This is a BETA early release, so expect bugs or functions that are still not implemented.
 
 For more details on how to contribute please follow the [Contributing Guidelines](https://github.com/NeptuneHub/AudioMuse-AI/blob/main/CONTRIBUTING.md)
 
-<hr style="background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%);">
+<hr>
 
-## <span style="margin-bottom: 0; background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%) text;-webkit-text-fill-color: transparent;">AudioMuse-AI related repository</span>
+## AudioMuse-AI related repositories
 
 * [AudioMuse-AI Helm Chart](https://github.com/NeptuneHub/AudioMuse-AI-helm): helm chart for easy installation on Kubernetes;
 * [AudioMuse-AI Plugin for Jellyfin](https://github.com/NeptuneHub/audiomuse-ai-plugin): Jellyfin Plugin;
 * [AudioMuse-AI MusicServer](https://github.com/NeptuneHub/AudioMuse-AI-MusicServer): **Experimental** Open Subosnic like Music Sever with integrated sonic functionality.
 
-<hr style="background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%);">
+<hr>
 
-## <span style="margin-bottom: 0; background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%) text;-webkit-text-fill-color: transparent;">Disclaimer</span>
+## Disclaimer
 
 Despite the similar name, this project (**AudioMuse-AI**) is an independent, community-driven effort. It has no official connection to the website `audiomuse.ai`.
