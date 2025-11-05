@@ -3,13 +3,13 @@
 ![Media Server Support: Jellyfin 10.10.7, Navidrome 0.58.0, LMS v3.69.0, Lyrion 9.0.2, Emby 4.9.1.80](https://img.shields.io/badge/Media%20Server-Jellyfin%2010.10.7%2C%20Navidrome%200.58.0%2C%20LMS%20v3.69.0%2C%20Lyrion%209.0.2%2C%20Emby%204.9.1.80-blue?style=flat-square&logo=server&logoColor=white)
 
 
-<h1 align="center" style="margin-bottom: 0;">
+<h1 align="center">
 AudioMuse-AI - Where Music Takes Shape
 </h1>
 
 ---
 
-<p align="center" style="margin-bottom: 0">
+<p align="center">
     <img src="screenshot/logo.png?raw=true" alt="AudioMuse-AI Logo" width="250">
 </p>
 
@@ -19,7 +19,7 @@ It features [Jellyfin](https://jellyfin.org), [Navidrome](https://www.navidrome.
 Using tools such as [Librosa](https://github.com/librosa/librosa) and [ONNX](https://onnx.ai/), it performs **sonic analysis** on your audio files locally, 
 allowing you to curate playlists for any mood or occasion without relying on external APIs.
 
-<hr style="background: linear-gradient(to right bottom, rgb(241, 105, 160) 0%, rgb(254, 142, 79) 100%);">
+<hr>
 
 
 ## Feature Overview
