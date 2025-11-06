@@ -60,6 +60,7 @@ services:
       REDIS_URL: "${REDIS_URL:-redis://redis:6379/0}" # Connects to the 'redis' service
       GEMINI_API_KEY: "${GEMINI_API_KEY}"
       MISTRAL_API_KEY: "${MISTRAL_API_KEY}"
+      OLLAMA_SERVER_URL: "${OLLAMA_SERVER_URL}"
       TEMP_DIR: "/app/temp_audio"
     volumes:
       - temp-audio-flask:/app/temp_audio # Volume for temporary audio files
@@ -102,6 +103,7 @@ services:
       REDIS_URL: "${REDIS_URL:-redis://redis:6379/0}" # Connects to the 'redis' service
       GEMINI_API_KEY: "${GEMINI_API_KEY}"
       MISTRAL_API_KEY: "${MISTRAL_API_KEY}"
+      OLLAMA_SERVER_URL: "${OLLAMA_SERVER_URL}"
       TEMP_DIR: "/app/temp_audio"
       # uncomment below if you want to use the experimental nvidia image
       #NVIDIA_VISIBLE_DEVICES: "0"

@@ -31,16 +31,31 @@ services:
 
   # AudioMuse-AI Flask application service
   audiomuse-ai-flask:
-    image: ghcr.io/neptunehub/audiomuse-ai:latest-nvidia
+    # optionally choose between the ARM/Intel image audiomuse-ai:latest and the experimental nvidia image audiomuse-ai:latest-nvidia
+    image: ghcr.io/neptunehub/audiomuse-ai:latest # audiomuse-ai:latest-nvidia
     container_name: audiomuse-ai-flask-app
     ports:
       - "8000:8000"
     environment:
       SERVICE_TYPE: "flask"
-      MEDIASERVER_TYPE: "jellyfin"
+      # Jellyfin specific settings (comment these with # if you are using Emby, Navidrome, or Lyrion)
+      MEDIASERVER_TYPE: "jellyfin" # Specify the media server type
       JELLYFIN_USER_ID: "${JELLYFIN_USER_ID}"
       JELLYFIN_TOKEN: "${JELLYFIN_TOKEN}"
       JELLYFIN_URL: "${JELLYFIN_URL}"
+      # EMBY specific settings (uncomment these if you are using Emby) #
+      #MEDIASERVER_TYPE: "emby" # Specify the media server type
+      #EMBY_USER_ID: "${EMBY_USER_ID}"
+      #EMBY_TOKEN: "${EMBY_TOKEN}"
+      #EMBY_URL: "${EMBY_URL}"
+      # LYRION specific settings (uncomment these if you are using Lyrion) #
+      #MEDIASERVER_TYPE: "lyrion"
+      #LYRION_URL: "${LYRION_URL}"
+      # NAVIDROME specific settings (uncomment these if you are using Navidrom) #
+      #MEDIASERVER_TYPE: "navidrome"
+      #NAVIDROME_URL: "${NAVIDROME_URL}"
+      #NAVIDROME_USER: "${NAVIDROME_USER}"
+      #NAVIDROME_PASSWORD: "${NAVIDROME_PASSWORD}"
       POSTGRES_USER: ${POSTGRES_USER:-audiomuse}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-audiomusepassword}
       POSTGRES_DB: ${POSTGRES_DB:-audiomusedb}
@@ -48,6 +63,8 @@ services:
       POSTGRES_PORT: "${POSTGRES_PORT:-5432}"
       REDIS_URL: "${REDIS_URL:-redis://redis:6379/0}"
       GEMINI_API_KEY: "${GEMINI_API_KEY}"
+      MISTRAL_API_KEY: "${MISTRAL_API_KEY}"
+      OLLAMA_SERVER_URL: "${OLLAMA_SERVER_URL}"
       TEMP_DIR: "/app/temp_audio"
       WORKER_URL: "${WORKER_URL}"  # points to worker on CPU/GPU machine (set in .env)
     volumes:
