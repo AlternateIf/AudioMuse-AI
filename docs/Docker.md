@@ -87,7 +87,7 @@ Do you want to stop the containers. Just run:
 docker compose stop
 ```
 
-#### Step 4: Access the Application
+### Step 4: Access the Application
 Once the container are running you can access the web app at `http://localhost:8000`. Make sure that you are using the
 Port that you defined for the Flask App in your docker compose file. The default is set to 8000
 
@@ -185,6 +185,12 @@ Note that for the Server + Worker solution to work you need to set the variables
 Make sure that you need to set the .env file on both instances. It is easiest to start with the server instance then copy the .env file 
 from there to your worker instance and set the 3 variables outlines above
 
+[comment]: <> (todo @AlternateIf add url here)
+In case you want to check out other available .env variables check out add url here
+
+> If you use LMS instead of the password you need to create and use the Subsonic API token. 
+> Additional Subsonic API based Mediaserver could require it in place of the password.
+
 ### Step 3: Start the containers
 
 ```
@@ -197,6 +203,6 @@ Do you want to stop the containers. Just run:
 docker compose stop
 ```
 
-#### Step 4: Access the Application
+### Step 4: Access the Application
 Once the container are running you can access the web app at `http://localhost:8000`. Make sure that you are using the
 Port that you defined for the Flask App in your docker compose file. The default is set to 8000

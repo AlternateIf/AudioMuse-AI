@@ -1,13 +1,52 @@
-## **Local Deployment with Podman Quadlets**
+# **Deployment with Podman Quadlets**
+
+This document is separated in two sections:
+
+1. [**All-In-One solution (Basic Setup)**](#all-in-one-solution-basic-setup)
+   - Runs all relevant services on the same instance. 
+   - Instance must meet the [Hardware Requirements](/README.md#hardware-requirements). 
+   - Instance needs to have Podman and systemd installed and working. Check the [official Podman website](https://podman.io/docs/installation) 
+   - needs to have an active `Jellyfin`|`Navidrome`|`Lyrion`|`Emby`|`AudioMuse-AI-MusicServer` on the same or a separate instance
+2. [**Server + Worker Solution (Advanced Setup)**](#server--worker-solution-advanced-setup)
+   - can run each service on a separate instance. (Redis, Postgres, Flask App, Worker). In the advanced example a 2 machine setup is shown that
+     features Redis, Postgres and the Flask App one (server) instance and the worker on a separate (worker) instance. 
+     This works great if you want to move the resource heavy part of AudioMuse to a separate instance 
+   - server instance might work below required [Hardware Requirements](/README.md#hardware-requirements). 
+   - worker instance should meet the [Hardware Requirements](/README.md#hardware-requirements)
+   - Both instances need to have Podman and systemd installed. Check the [official Podman website](https://podman.io/docs/installation) 
+   - needs to have an active `Jellyfin`|`Navidrome`|`Lyrion`|`Emby` on the same or a separate instance
+
+## All-In-One Solution (Basic Setup)
+
+### Step 1: Download the required files
+
+### Step 2: Update the .env file with your settings
+
+### Step 3: Start the containers
+
+### Step 4: Access the Application
+
+## Server + Worker Solution (Advanced Setup)
+
+### Step 1: Download the required files
+
+### Step 2: Update the .env file with your settings
+
+### Step 3: Start the containers
+
+### Step 4: Access the Application
+
+
+
+
+
+
+
+
 
 For an alternative local setup, [Podman Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html) files are provided in the `deployment/podman-quadlets` directory for interacting with **Navidrome**. The unit files can  be edited for use with **Jellyfin**. 
 
-These files are configured to automatically update AudioMuse-AI using the [latest](#docker-image-tagging-strategy) stable release and should perform an automatic rollback if the updated image fails to start.
-
-**Prerequisites:**
-*   Podman and systemd.
-*   `Jellyfin` or `Navidrome` installed.
-*   Respect the [hardware requirements](#hardware-requirements)
+These files are configured to automatically update AudioMuse-AI using the [latest](/docs/Image-Tagging.md#docker-image-tagging-strategy) stable release and should perform an automatic rollback if the updated image fails to start.
 
 **Steps:**
 1.  **Navigate to the `deployment/podman-quadlets` directory:**
@@ -35,5 +74,3 @@ These files are configured to automatically update AudioMuse-AI using the [lates
     ```bash
     systemctl --user stop audiomuse-pod
     ```
-
-**IMPORTANT:** From `v0.7.0-beta`, ONNX replaces TensorFlow. As a result, some CPUs previously not supported may now work.
