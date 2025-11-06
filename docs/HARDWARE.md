@@ -1,4 +1,4 @@
-# Tested Hardware & Configurations
+# :computer: Tested Hardware & Configurations
 
 This document lists confirmed working configurations for **AudioMuse-AI**, split by backend version.
 
@@ -8,7 +8,7 @@ This document lists confirmed working configurations for **AudioMuse-AI**, split
 
 ---
 
-## ⚙️ With ONNX Backend (from `v0.7.0-beta`)
+## With ONNX Backend (from `v0.7.0-beta`)
 
 |                           Issue ID                            | Hardware                                                  | Configuration                                          | Supported | Notes                                   |
 |:-------------------------------------------------------------:|-----------------------------------------------------------|--------------------------------------------------------|:---------:|-----------------------------------------|
@@ -18,7 +18,7 @@ This document lists confirmed working configurations for **AudioMuse-AI**, split
 
 ---
 
-## 🧠 With TensorFlow Backend (up to `v0.6.10-beta`)
+## With TensorFlow Backend (up to `v0.6.10-beta`)
 
 |                          Issue ID                           | Hardware                                           | Configuration                                                               |   Supported    | Notes                                                                |
 |:-----------------------------------------------------------:|----------------------------------------------------|-----------------------------------------------------------------------------|:--------------:|----------------------------------------------------------------------|

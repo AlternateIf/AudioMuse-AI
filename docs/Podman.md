@@ -16,6 +16,9 @@ This document is separated in two sections:
    - Both instances need to have Podman and systemd installed. Check the [official Podman website](https://podman.io/docs/installation) 
    - needs to have an active `Jellyfin`|`Navidrome`|`Lyrion`|`Emby` on the same or a separate instance
 
+> The **Image Tagging Strategy** can be found [here](docs/Image-Tagging.md)
+
+
 ## All-In-One Solution (Basic Setup)
 
 ### Step 1: Download the required files

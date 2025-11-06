@@ -1,4 +1,4 @@
-# **Deployment with Docker Compose**
+# :whale: **Deployment with Docker Compose**
 
 This document is separated in two sections:
 
@@ -15,6 +15,8 @@ This document is separated in two sections:
    - worker instance should meet the [Hardware Requirements](/README.md#hardware-requirements)
    - Both instances need to have Docker and Docker Compose installed. Check the [official Docker website](https://docs.docker.com/compose/install/) 
    - needs to have an active `Jellyfin`|`Navidrome`|`Lyrion`|`Emby` on the same or a separate instance
+
+> The **Image Tagging Strategy** can be found [here](docs/Image-Tagging.md)
 
 ## All-In-One Solution (Basic Setup)
 
