@@ -43,6 +43,11 @@ services:
       # uncomment below if you want to use the experimental nvidia image
       #NVIDIA_VISIBLE_DEVICES: "0"
       #NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
+      # Remote worker Variables [Not Required for the All-In-One Solution / Basic Setup]
+      # Tells the Worker/Flask App how the Postgres Host is reachable
+      WORKER_POSTGRES_HOST: "${WORKER_POSTGRES_HOST}"
+      # Tells the Worker/Flask App how the Redis Service is reachable
+      WORKER_REDIS_URL: "${WORKER_REDIS_URL}"
     volumes:
       - temp-audio-worker:/app/temp_audio
     restart: unless-stopped

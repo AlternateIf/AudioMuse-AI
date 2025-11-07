@@ -23,20 +23,20 @@ This document is separated in two sections:
 ### Step 1: Download the required files 
 
 Create a directory to store your docker-compose and .env file for your instance
-```
+```bash
 mkdir ./audiomuse-ai
 cd ./audiomuse-ai
 ```
 
 Download the [.env](/deployment/.env.example) file that houses all our environment settings
-```
-wget -O .env https://github.com/NeptuneHub/AudioMuse-AI/blob/main/deployment/.env.example
+```bash
+wget -O .env https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/.env.example
 ```
 
 Download the docker-compose file. 
 
-```
-wget -O docker-compose.yml https://github.com/NeptuneHub/AudioMuse-AI/blob/main/deployment/docker-compose.yaml
+```bash
+wget -O docker-compose.yml https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/docker-compose.yaml
 ```
 
 ### Step 2: Update the .env file with your settings
@@ -44,7 +44,7 @@ wget -O docker-compose.yml https://github.com/NeptuneHub/AudioMuse-AI/blob/main/
 If you are using `Navidrome`,`Lyrion` or `Emby` uncomment the respective sections and comment the Jellyfin sections. 
 If you have activated Emby it will look like this:
 
-```
+```dotenv
       # Jellyfin specific settings (comment these with # if you are using Emby, Navidrome, or Lyrion)
       #MEDIASERVER_TYPE: "jellyfin" # Specify the media server type
       #JELLYFIN_USER_ID: "${JELLYFIN_USER_ID}"
@@ -65,7 +65,7 @@ If you have activated Emby it will look like this:
       #NAVIDROME_PASSWORD: "${NAVIDROME_PASSWORD}"
 ```
 
-If you have your mediaserver section (`Jellyfin`|`Navidrome`|`Lyrion`|`Emby`) active you will need to set the values for it 
+Once you have your mediaserver section (`Jellyfin`|`Navidrome`|`Lyrion`|`Emby`) active you will need to set the values for it 
 as well as potentially changing the Redis and Postgres settings. If you plan on using AI to name your playlists you will also need to
 set the settings of your desired AI Provider  (`Gemini`|`Mistral`|`Ollama`)
 
@@ -78,13 +78,13 @@ In case you want to check out other available .env variables check out [Config-P
 
 ### Step 3: Start the containers
 
-```
+```bash
 docker compose up -d
 ```
 
 Do you want to stop the containers. Just run:
 
-```
+```bash
 docker compose stop
 ```
 
@@ -99,42 +99,42 @@ Port that you defined for the Flask App in your docker compose file. The default
 #### Server Instance:
 Create a directory to store your docker-compose and .env file for your server instance (running the Flask app, Redis and Postgres)
 
-```
+```bash
 mkdir ./audiomuse-ai
 cd ./audiomuse-ai
 ```
 
 Download the [.env](/deployment/.env.example) file that houses all our environment settings
 
-```
-wget -O .env https://github.com/NeptuneHub/AudioMuse-AI/blob/main/deployment/.env.example
+```bash
+wget -O .env https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/.env.example
 ```
 
 Download the docker-compose file. 
 
-```
-wget -O docker-compose.yml https://github.com/NeptuneHub/AudioMuse-AI/blob/main/deployment/docker-compose-server.yaml
+```bash
+wget -O docker-compose.yml https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/docker-compose-server.yaml
 ```
 
 
 #### Worker Instance
 
 Create a directory to store your docker-compose and .env file for your worker instance
-```
+```bash
 mkdir ./audiomuse-ai
 cd ./audiomuse-ai
 ```
 
 Download the [.env](/deployment/.env.example) file that houses all our environment settings
 
-```
-wget -O .env https://github.com/NeptuneHub/AudioMuse-AI/blob/main/deployment/.env.example
+```bash
+wget -O .env https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/.env.example
 ```
 
 Download the docker-compose file. 
 
-```
-wget -O docker-compose.yml https://github.com/NeptuneHub/AudioMuse-AI/blob/main/deployment/docker-compose-worker.yaml
+```bash
+wget -O docker-compose.yml https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/docker-compose-worker.yaml
 ```
 
 
@@ -143,7 +143,7 @@ wget -O docker-compose.yml https://github.com/NeptuneHub/AudioMuse-AI/blob/main/
 If you are using `Navidrome`,`Lyrion` or `Emby` uncomment the respective sections and comment the Jellyfin sections. 
 If you have activated Emby it will look like this:
 
-```
+```dotenv
       # Jellyfin specific settings (comment these with # if you are using Emby, Navidrome, or Lyrion)
       #MEDIASERVER_TYPE: "jellyfin" # Specify the media server type
       #JELLYFIN_USER_ID: "${JELLYFIN_USER_ID}"
@@ -172,7 +172,7 @@ If you want to use the nvidia images instead of the ARM/Intel Image you can sear
 
 Note that for the Server + Worker solution to work you need to set the variables below in your .env file.
 
-```
+```dotenv
     # Remote worker Variables [Not Required for the All-In-One Solution / Basic Setup]
     # Tells the Server/Flask App how the Worker is reachable
     WORKER_URL=http://worker.example.com:8029/worker
@@ -192,16 +192,16 @@ In case you want to check out other available .env variables check out [Config-P
 
 ### Step 3: Start the containers
 
-```
+```bash
 docker compose up -d
 ```
 
 Do you want to stop the containers. Just run:
 
-```
+```bash
 docker compose stop
 ```
 
 ### Step 4: Access the Application
-Once the container are running you can access the web app at `http://localhost:8000`. Make sure that you are using the
+Once the container are running you can access the web app at `http://localhost:8000` on your server instance. Make sure that you are using the
 Port that you defined for the Flask App in your docker compose file. The default is set to 8000

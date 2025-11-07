@@ -66,7 +66,8 @@ services:
       MISTRAL_API_KEY: "${MISTRAL_API_KEY}"
       OLLAMA_SERVER_URL: "${OLLAMA_SERVER_URL}"
       TEMP_DIR: "/app/temp_audio"
-      WORKER_URL: "${WORKER_URL}"  # points to worker on CPU/GPU machine (set in .env)
+      # Remote worker Variables [Not Required for the All-In-One Solution / Basic Setup]
+      #WORKER_URL: "${WORKER_URL}"  # points to worker on CPU/GPU machine (set in .env)
     volumes:
       - temp-audio-flask:/app/temp_audio
     depends_on:

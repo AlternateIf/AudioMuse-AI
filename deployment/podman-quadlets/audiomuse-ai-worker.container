@@ -6,20 +6,35 @@ After=audiomuse-redis.service audiomuse-postgres.service
 
 [Container]
 ContainerName=audiomuse-ai-worker
+# optionally choose between the ARM/Intel image audiomuse-ai:latest and the experimental nvidia image audiomuse-ai:latest-nvidia
 Image=ghcr.io/neptunehub/audiomuse-ai:latest
 Pod=audiomuse.pod
 Tmpfs=/app/temp_audio
 AutoUpdate=registry
 
 #Env
-Environment=SERVICE_TYPE=worker MEDIASERVER_TYPE=navidrome 
-Environment=NAVIDROME_URL=YOUR-NAVIDROME-URL
-Environment=NAVIDROME_USER=YOUR-USER NAVIDROME_PASSWORD=YOUR-PASSWORD
+Environment=SERVICE_TYPE=worker
+# Jellyfin specific settings (comment these with # if you are using Emby, Navidrome, or Lyrion)
+Environment=MEDIASERVER_TYPE=jellyfin
+Environment=JELLYFIN_USER_ID=JELLYFIN_USER_ID JELLYFIN_TOKEN=JELLYFIN_TOKEN JELLYFIN_URL= JELLYFIN_URL
+# EMBY specific settings (uncomment these if you are using Emby) #
+#Environment=MEDIASERVER_TYPE=emby
+#Environment=EMBY_USER_ID=EMBY_USER_ID EMBY_TOKEN=EMBY_TOKEN EMBY_URL=EMBY_URL
+# LYRION specific settings (uncomment these if you are using Lyrion) #
+#Environment=MEDIASERVER_TYPE=lyrion
+#Environment=LYRION_URL=LYRION_URL
+# NAVIDROME specific settings (uncomment these if you are using Navidrom) #
+#Environment=MEDIASERVER_TYPE=navidrome
+#Environment=NAVIDROME_URL=YOUR-NAVIDROME-URL NAVIDROME_USER=YOUR-USER NAVIDROME_PASSWORD=YOUR-PASSWORD
 Environment=POSTGRES_USER=audiomuse POSTGRES_PASSWORD=audiomusepassword 
 Environment=POSTGRES_DB=audiomusedb POSTGRES_HOST=localhost POSTGRES_PORT=5432 
 Environment=REDIS_URL=redis://localhost:6379/0 
 Environment=GEMINI_API_KEY=YOUR_GEMINI_API_KEY_HERE
+Environment=MISTRAL_API_KEY=MISTRAL_API_KEY
+Environment=OLLAMA_SERVER_URL=OLLAMA_SERVER_URL
 Environment=TEMP_DIR=/app/temp_audio
+# Remote worker Variables [Not Required for the All-In-One Solution / Basic Setup]
+#Environment=WORKER_POSTGRES_HOST=WORKER_POSTGRES_HOST WORKER_REDIS_URL=WORKER_REDIS_URL
 
 [Service]
 Restart=always

@@ -1,5 +1,6 @@
-todo @AlternateIf
 # **Deployment with Podman Quadlets**
+
+To learn more about how to deploy with Podman Quadlets check their official [documentation](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html)
 
 This document is separated in two sections:
 
@@ -7,7 +8,7 @@ This document is separated in two sections:
    - Runs all relevant services on the same instance. 
    - Instance must meet the [Hardware Requirements](/README.md#hardware-requirements). 
    - Instance needs to have Podman and systemd installed and working. Check the [official Podman website](https://podman.io/docs/installation) 
-   - needs to have an active `Jellyfin`|`Navidrome`|`Lyrion`|`Emby`` on the same or a separate instance
+   - needs to have an active `Jellyfin`|`Navidrome`|`Lyrion`|`Emby` on the same or a separate instance
 2. [**Server + Worker Solution (Advanced Setup)**](#server--worker-solution-advanced-setup)
    - can run each service on a separate instance. (Redis, Postgres, Flask App, Worker). In the advanced example a 2 machine setup is shown that
      features Redis, Postgres and the Flask App one (server) instance and the worker on a separate (worker) instance. 
@@ -24,57 +25,146 @@ This document is separated in two sections:
 
 ### Step 1: Download the required files
 
-### Step 2: Update the .env file with your settings
+Download the container config files. Make sure you are using the right container folder in the next commands. You can find more info in the quadlets official [documentation](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html)
+
+```bash
+sudo wget -O /etc/containers/systemd/audiomuse.pod https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/podman-quadlets/audiomuse.pod
+sudo wget -O /etc/containers/systemd/audiomuse-ai-flask.container https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/podman-quadlets/audiomuse-ai-flask.container
+sudo wget -O /etc/containers/systemd/audiomuse-ai-postgres.container https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/podman-quadlets/audiomuse-postgres.container
+sudo wget -O /etc/containers/systemd/audiomuse-ai-redis.container https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/podman-quadlets/audiomuse-redis.container
+sudo wget -O /etc/containers/systemd/audiomuse-ai-worker.container https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/podman-quadlets/audiomuse-ai-worker.container
+```
+
+### Step 2: Update the container files with your settings
+
+```dotenv
+    Environment=SERVICE_TYPE=flask 
+    # Jellyfin specific settings (comment these with # if you are using Emby, Navidrome, or Lyrion)
+    Environment=MEDIASERVER_TYPE=jellyfin
+    Environment=JELLYFIN_USER_ID=JELLYFIN_USER_ID JELLYFIN_TOKEN=JELLYFIN_TOKEN JELLYFIN_URL= JELLYFIN_URL
+    # EMBY specific settings (uncomment these if you are using Emby) #
+    #Environment=MEDIASERVER_TYPE=emby
+    #Environment=EMBY_USER_ID=EMBY_USER_ID EMBY_TOKEN=EMBY_TOKEN EMBY_URL=EMBY_URL
+    # LYRION specific settings (uncomment these if you are using Lyrion) #
+    #Environment=MEDIASERVER_TYPE=lyrion
+    #Environment=LYRION_URL=LYRION_URL
+    # NAVIDROME specific settings (uncomment these if you are using Navidrom) #
+    #Environment=MEDIASERVER_TYPE=navidrome 
+    #Environment=NAVIDROME_URL=YOUR-NAVIDROME-URL NAVIDROME_USER=YOUR-USER NAVIDROME_PASSWORD=YOUR-PASSWORD
+    Environment=POSTGRES_USER=audiomuse POSTGRES_PASSWORD=audiomusepassword 
+    Environment=POSTGRES_DB=audiomusedb POSTGRES_HOST=localhost POSTGRES_PORT=5432 
+    Environment=REDIS_URL=redis://localhost:6379/0 
+    Environment=GEMINI_API_KEY=YOUR_GEMINI_API_KEY_HERE
+    Environment=GEMINI_MODEL_NAME=gemini-2.5-flash
+    Environment=MISTRAL_API_KEY=MISTRAL_API_KEY
+    Environment=OLLAMA_SERVER_URL=OLLAMA_SERVER_URL
+    Environment=TEMP_DIR=/app/temp_audio
+```
+
+Once you have your mediaserver section (`Jellyfin`|`Navidrome`|`Lyrion`|`Emby`) active you will need to set the values for it 
+as well as potentially changing the Redis and Postgres settings. If you plan on using AI to name your playlists you will also need to
+set the settings of your desired AI Provider  (`Gemini`|`Mistral`|`Ollama`)
+
+If you want to use the nvidia images instead of the ARM/Intel Image you can search the container for nvidia to find instructions.
+
+In case you want to check out other available .env variables check out [Config-Params](/docs/Config-Params.md)
 
 ### Step 3: Start the containers
 
+```bash
+systemctl --user daemon-reload
+systemctl --user start audiomuse-pod
+```
+
+Do you want to stop the containers. Just run:
+
+```bash
+systemctl --user stop audiomuse-pod
+```
+
 ### Step 4: Access the Application
+
+Once the container are running you can access the web app at `http://localhost:8000`. Make sure that you are using the
+Port that you defined for the Flask App in your pod file. The default is set to 8000
 
 ## Server + Worker Solution (Advanced Setup)
 
 ### Step 1: Download the required files
 
-### Step 2: Update the .env file with your settings
+Download the container config files. Make sure you are using the right container folder in the next commands. You can find more info in the quadlets official [documentation](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html)
+
+#### Server Instance:
+
+```bash
+sudo wget -O /etc/containers/systemd/audiomuse.pod https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/podman-quadlets/audiomuse.pod
+sudo wget -O /etc/containers/systemd/audiomuse-ai-flask.container https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/podman-quadlets/audiomuse-ai-flask.container
+sudo wget -O /etc/containers/systemd/audiomuse-ai-postgres.container https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/podman-quadlets/audiomuse-postgres.container
+sudo wget -O /etc/containers/systemd/audiomuse-ai-redis.container https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/podman-quadlets/audiomuse-redis.container
+```
+
+#### Worker Instance
+
+```bash
+sudo wget -O /etc/containers/systemd/audiomuse.pod https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/podman-quadlets/audiomuse-worker.pod
+sudo wget -O /etc/containers/systemd/audiomuse-ai-worker.container https://raw.githubusercontent.com/NeptuneHub/AudioMuse-AI/refs/heads/main/deployment/podman-quadlets/audiomuse-ai-worker.container
+```
+
+### Step 2: Update the container file with your settings
+
+```dotenv
+Environment=SERVICE_TYPE=flask
+# Jellyfin specific settings (comment these with # if you are using Emby, Navidrome, or Lyrion)
+Environment=MEDIASERVER_TYPE=jellyfin
+Environment=JELLYFIN_USER_ID=JELLYFIN_USER_ID JELLYFIN_TOKEN=JELLYFIN_TOKEN JELLYFIN_URL= JELLYFIN_URL
+# EMBY specific settings (uncomment these if you are using Emby) #
+#Environment=MEDIASERVER_TYPE=emby
+#Environment=EMBY_USER_ID=EMBY_USER_ID EMBY_TOKEN=EMBY_TOKEN EMBY_URL=EMBY_URL
+# LYRION specific settings (uncomment these if you are using Lyrion) #
+#Environment=MEDIASERVER_TYPE=lyrion
+#Environment=LYRION_URL=LYRION_URL
+# NAVIDROME specific settings (uncomment these if you are using Navidrom) #
+#Environment=MEDIASERVER_TYPE=navidrome
+#Environment=NAVIDROME_URL=YOUR-NAVIDROME-URL NAVIDROME_USER=YOUR-USER NAVIDROME_PASSWORD=YOUR-PASSWORD
+Environment=POSTGRES_USER=audiomuse POSTGRES_PASSWORD=audiomusepassword 
+Environment=POSTGRES_DB=audiomusedb POSTGRES_HOST=localhost POSTGRES_PORT=5432 
+Environment=REDIS_URL=redis://localhost:6379/0 
+Environment=GEMINI_API_KEY=YOUR_GEMINI_API_KEY_HERE
+Environment=GEMINI_MODEL_NAME=gemini-2.5-flash
+Environment=MISTRAL_API_KEY=MISTRAL_API_KEY
+Environment=OLLAMA_SERVER_URL=OLLAMA_SERVER_URL
+Environment=TEMP_DIR=/app/temp_audio
+```
+
+Once you have your mediaserver section (`Jellyfin`|`Navidrome`|`Lyrion`|`Emby`) active you will need to set the values for it 
+as well as potentially changing the Redis and Postgres settings. If you plan on using AI to name your playlists you will also need to
+set the settings of your desired AI Provider  (`Gemini`|`Mistral`|`Ollama`)
+
+If you want to use the nvidia images instead of the ARM/Intel Image you can search the container for nvidia to find instructions.
+
+In case you want to check out other available .env variables check out [Config-Params](/docs/Config-Params.md)
+
+Note that for the Server + Worker solution to work you need to set the variables below in your container files.
+
+```dotenv
+# Remote worker Variables [Not Required for the All-In-One Solution / Basic Setup]
+Environment=WORKER_URL=WORKER_URL
+Environment=WORKER_POSTGRES_HOST=WORKER_POSTGRES_HOST WORKER_REDIS_URL=WORKER_REDIS_URL
+```
 
 ### Step 3: Start the containers
 
+```bash
+systemctl --user daemon-reload
+systemctl --user start audiomuse-pod
+```
+
+Do you want to stop the containers. Just run:
+
+```bash
+systemctl --user stop audiomuse-pod
+```
+
 ### Step 4: Access the Application
 
-
-
-
-
-
-
-
-
-For an alternative local setup, [Podman Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html) files are provided in the `deployment/podman-quadlets` directory for interacting with **Navidrome**. The unit files can  be edited for use with **Jellyfin**. 
-
-These files are configured to automatically update AudioMuse-AI using the [latest](/docs/Image-Tagging.md) stable release and should perform an automatic rollback if the updated image fails to start.
-
-**Steps:**
-1.  **Navigate to the `deployment/podman-quadlets` directory:**
-    ```bash
-    cd deployment/podman-quadlets
-    ```
-2.  **Review and Customize:**
-
-    The `audiomuse-ai-postgres.container` and `audiomuse-redis.container` files are pre-configured with default credentials and settings suitable for local testing. <BR>
-    You will need to edit environment variables within `audiomuse-ai-worker.container` and `audiomuse-ai-flask.container` files to reflect your personal credentials and environment.
-    * For **Navidrome**, update `NAVIDROME_URL`, `NAVIDROME_USER` and `NAVIDROME_PASSWORD` with your real credentials.  
-    * For **Jellyfin** replace these variables with `JELLYFIN_URL`, `JELLYFIN_USER_ID`, `JELLYFIN_TOKEN`; add your real credentials; and change the `MEDIASERVER_TYPE` to `jellyfin`. 
-
-    Once you've customized the unit files, you will need to copy all of them into a systemd container directory, such as `/etc/containers/systemd/user/`.<BR>
-
-3.  **Start the Services:**
-    ```bash
-    systemctl --user daemon-reload
-    systemctl --user start audiomuse-pod
-    ```
-    The first command reloads systemd (generating the systemd service files) and the second command starts all AudioMuse services (Flask app, RQ worker, Redis, PostgreSQL).
-4.  **Access the Application:**
-    Once the containers are up, you can access the web UI at `http://localhost:8000`.
-5.  **Stopping the Services:**
-    ```bash
-    systemctl --user stop audiomuse-pod
-    ```
+Once the container are running you can access the web app at `http://localhost:8000` on your server instance. Make sure that you are using the
+Port that you defined for the Flask App in your pod file. The default is set to 8000

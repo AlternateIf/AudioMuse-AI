@@ -63,6 +63,8 @@ There are 3 ways to spin up your AudioMuse instance. To learn more about them fo
 2. [Podman](docs/Podman.md)
 3. [Kubernetes](docs/Kubernetes.md)
 
+> It is also possible to mix those ways in case you are using the advanced setup. (e.g. docker server [Flask+Postgres+Redis] and Podman Worker [])
+
 Want to learn more about what technologies AudioMuse uses? Check out the [Technologies](docs/Technologies.md)
 
 # Setup
