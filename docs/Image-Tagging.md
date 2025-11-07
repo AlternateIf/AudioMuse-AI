@@ -1,6 +1,6 @@
-# Docker Image Tagging Strategy & Experimental Nvidia Support
+# Image Tagging Strategy & Experimental Nvidia Support
 
-## 🐳 Docker Image Tagging Strategy
+## Image Tagging Strategy
 
 Our automated GitHub Actions workflow continuously builds and publishes Docker images.  
 Below is the versioning and tagging convention we follow:

@@ -1,15 +1,84 @@
-AudioMuse AI is built upon a robust stack of open-source technologies:
+# Technology Stack Overview
 
-* [**Flask:**](https://flask.palletsprojects.com/) Provides the lightweight web interface for user interaction and API endpoints.  
-* [**Redis Queue (RQ):**](https://redis.io/glossary/redis-queue/) A simple Python library for queueing jobs and processing them in the background with Redis.
-* [**Supervisord:**](https://supervisord.org/) Supervisor is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems.
-* [**Essentia-tensorflow**](https://essentia.upf.edu/) An open-source library for audio analysis, feature extraction, and music information retrieval. (used only until version v0.5.0-beta)
-* [**MusicNN Tensorflow Audio Models from Essentia**](https://essentia.upf.edu/models.html) Leverages pre-trained MusicNN models for feature extraction and prediction. More details and models.
-* [**Librosa**](https://github.com/librosa/librosa) Library for audio analysis, feature extraction, and music information retrieval. (used from version v0.6.0-beta)
-* [**ONNX**](https://onnx.ai/) Open Neural Network Exchange format and [ONNX Runtime](https://onnxruntime.ai/) for fast, portable, cross-platform model inference. **(Used from v0.7.0-beta, replaces TensorFlow)**
-* [**Tensorflow**](https://www.tensorflow.org/) Platform developed by Google for building, training, and deploying machine learning and deep learning models. **(Used only in versions before v0.7.0-beta)**
-* [**scikit-learn**](https://scikit-learn.org/) Utilized for machine learning algorithms:
-* [**voyager**](https://github.com/spotify/voyager) Approximate Nearest Neighbors used for the /similarity interface. Used from v0.6.3-beta
-* [**PostgreSQL:**](https://www.postgresql.org/) A powerful, open-source relational database used for persisting:  
-* [**Ollama**](https://ollama.com/) Enables self-hosting of various open-source Large Language Models (LLMs) for tasks like intelligent playlist naming.
-* [**Docker / OCI-compatible Containers**](https://www.docker.com/) – The entire application is packaged as a container, ensuring consistent and portable deployment across environments.
+AudioMuse AI is built on a curated set of reliable, open‑source technologies that power its web interface, audio analysis, 
+background processing and data persistence.
+
+Below is overview of each component and its role in the system.
+
+---
+
+## Web & API Layer
+
+### **Flask**
+:link: https://flask.palletsprojects.com/  
+Lightweight Python web framework used to expose the UI and REST API endpoints.
+
+### **Supervisord**
+:link: https://supervisord.org/  
+A Client/Server system that manages and monitors multiple processes (API server, workers, queues) on a UNIX-like operating system.
+
+---
+
+## Background Processing
+
+### **Redis Queue (RQ)**
+:link: https://redis.io/glossary/redis-queue/  
+Handles asynchronous task execution, allowing processes to be run in the background.
+
+---
+
+## Audio Analysis & Feature Extraction
+
+### **Librosa**  
+:link: https://github.com/librosa/librosa  
+Used for audio preprocessing, feature extraction, and general DSP operations.
+
+### **MusicNN (TensorFlow Models from Essentia)**  
+:link: https://essentia.upf.edu/models.html
+Open-source MIR (Music Information Retrieval) framework.  
+Used for MusicNN deep learning models prior to ONNX migration.
+
+---
+
+## Machine Learning Inference
+
+### **ONNX + ONNX Runtime**  *(from v0.7.0-beta onward)*  
+:link: https://onnx.ai/  
+:link: https://onnxruntime.ai/  
+Fast, portable cross‑platform model execution engine.  
+Replaced TensorFlow for improved performance, lightweight deployment, and broader hardware support.
+
+### **scikit-learn**  
+:link: https://scikit-learn.org/  
+Used for classical ML algorithms, clustering, and similarity computations.
+
+### **voyager (Spotify)**  *(since v0.6.3-beta)*  
+:link: https://github.com/spotify/voyager  
+Approximate Nearest Neighbor (ANN) search powering the `/similarity` interface.
+
+---
+
+## LLM Integration
+
+### **Ollama**  
+:link: https://ollama.com/  
+Enables local/runtime execution of open-source LLMs—for example, to intelligently suggest playlist names.
+
+---
+
+## Data Storage
+
+### **PostgreSQL**
+:link: https://www.postgresql.org/  
+Primary persistent data store for metadata, analysis results, similarity vectors, and system state.
+
+---
+
+## Deployment & Packaging
+
+### **OCI Containers**
+:link: https://www.docker.com/  
+:link: https://podman.io/  
+:link: https://kubernetes.io/  
+The entire backend (API, workers, queue, database) is containerized for consistent, portable deployment.  
+Supports Docker, Podman, and any OCI‑compatible runtime.
