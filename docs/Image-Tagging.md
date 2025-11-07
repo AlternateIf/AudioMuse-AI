@@ -10,9 +10,6 @@ Below is the versioning and tagging convention we follow:
 | **`:latest`**                                    | `main`           | Latest stable release, fully tested and suitable for production.        | Recommended for most users               |
 | **`:devel`**                                     | `devel`          | Development branch containing upcoming features. Not guaranteed stable. | For testing and development only         |
 | **`:vX.Y.Z`** (e.g., `:v0.1.4-alpha`, `:v1.0.0`) | Git release tags | Immutable, version-locked builds for reproducible deployments.          | Use when pinning to a specific version   |
-| **`:vX.Y.Z`** (e.g., `:v0.1.4-alpha`, `:v1.0.0`) | Git release tags | Immutable, version-locked builds for reproducible deployments.          | Use when pinning to a specific version   |
-
-
 > **Experimental NVIDIA images**  
 > Tags ending in `-nvidia` (e.g., `:latest-nvidia`) include CUDA support for GPU acceleration, which can speed up processing of tracks  
 > These builds are **experimental** though and provided for users who wish to test or contribute to GPU integration.  

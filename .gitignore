@@ -30,3 +30,6 @@ env/
 # Test artifacts
 .pytest_cache/
 htmlcov/
+
+local/
+/local/

@@ -49,7 +49,7 @@ This document is separated in two sections:
 
 For an alternative local setup, [Podman Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html) files are provided in the `deployment/podman-quadlets` directory for interacting with **Navidrome**. The unit files can  be edited for use with **Jellyfin**. 
 
-These files are configured to automatically update AudioMuse-AI using the [latest](/docs/Image-Tagging.md#docker-image-tagging-strategy) stable release and should perform an automatic rollback if the updated image fails to start.
+These files are configured to automatically update AudioMuse-AI using the [latest](/docs/Image-Tagging.md) stable release and should perform an automatic rollback if the updated image fails to start.
 
 **Steps:**
 1.  **Navigate to the `deployment/podman-quadlets` directory:**
