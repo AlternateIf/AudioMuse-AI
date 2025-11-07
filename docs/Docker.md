@@ -71,8 +71,7 @@ set the settings of your desired AI Provider  (`Gemini`|`Mistral`|`Ollama`)
 
 If you want to use the nvidia images instead of the ARM/Intel Image you can search the docker compose for nvidia to find instructions.
 
-[comment]: <> (todo @AlternateIf add url here)
-In case you want to check out other available .env variables check out add url here
+In case you want to check out other available .env variables check out [Config-Params](/docs/Config-Params.md)
 
 > If you use LMS instead of the password you need to create and use the Subsonic API token. 
 > Additional Subsonic API based Mediaserver could require it in place of the password.
@@ -95,7 +94,6 @@ Port that you defined for the Flask App in your docker compose file. The default
 
 ## Server + Worker Solution (Advanced Setup)
 
-[comment]: <> (todo @AlternateIf finish advanced setup worker + server)
 ### Step 1: Download the required files 
 
 #### Server Instance:
@@ -187,8 +185,7 @@ Note that for the Server + Worker solution to work you need to set the variables
 Make sure that you need to set the .env file on both instances. It is easiest to start with the server instance then copy the .env file 
 from there to your worker instance and set the 3 variables outlines above
 
-[comment]: <> (todo @AlternateIf add url here)
-In case you want to check out other available .env variables check out add url here
+In case you want to check out other available .env variables check out [Config-Params](/docs/Config-Params.md)
 
 > If you use LMS instead of the password you need to create and use the Subsonic API token. 
 > Additional Subsonic API based Mediaserver could require it in place of the password.
