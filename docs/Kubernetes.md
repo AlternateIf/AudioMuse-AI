@@ -1,27 +1,23 @@
-todo @AlternateIf
+# :whale: **Deployment on Kubernetes **
 
-## **Quick Start Deployment on K3S WITH HELM**
+This document is separated in 2 part:
 
-The best way to install AudioMuse-AI on K3S (kubernetes) is by [AudioMuse-AI Helm Chart repository](https://github.com/NeptuneHub/AudioMuse-AI-helm)
+## Kubernetes with HELM
+The best way to install AudioMuse-AI on K3S (kubernetes) is by using the [AudioMuse-AI Helm Chart repository](https://github.com/NeptuneHub/AudioMuse-AI-helm)
 
-*  **Prerequisites:**
-    *   A running `K3S cluster`.
-    *   `kubectl` configured to interact with your cluster.
-    *   `helm` installed.
-    *   `Jellyfin` or `Navidrome` or `Lyrion` installed.
-    *   Respect the HW requirements (look the specific chapter)
+- Instance must meet the [Hardware Requirements](/README.md#hardware-requirements). 
+- Instance needs to be a working K3S cluster and have kubectl and helm setup and working.
+- needs to have an active `Jellyfin`|`Navidrome`|`Lyrion`|`Emby` on the same or a separate instance
 
 You can directly check the Helm Chart repo for more details and deployments examples.
 
-## **Quick Start Deployment on K3S**
+## Kubernetes without HELM
 
 This section provides a minimal guide to deploy AudioMuse-AI on a K3S (Kubernetes) cluster by directly using the `deployment` manifests.
 
-* **Prerequisites:**
-    *   A running K3S cluster.
-    *   `kubectl` configured to interact with your cluster.
-    *   `Jellyfin` or `Navidrome` or `Lyrion` installed.
-    *   Respect the HW requirements (look the specific chapter)
+- Instance must meet the [Hardware Requirements](/README.md#hardware-requirements). 
+- Instance needs to be a working K3S cluster and have kubectl setup and working.
+- needs to have an active `Jellyfin`|`Navidrome`|`Lyrion`|`Emby` on the same or a separate instance
 
 *  **Jellyfin Configuration:**
     *   Navigate to the `deployment/` directory.
