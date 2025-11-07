@@ -9,6 +9,9 @@ venv/
 .venv/
 env/
 
+local/*
+/local/*
+
 # Local environment variables
 # IMPORTANT: Never commit your .env file with secrets!
 .env*
@@ -30,6 +33,3 @@ env/
 # Test artifacts
 .pytest_cache/
 htmlcov/
-
-local/
-/local/
