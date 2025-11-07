@@ -6,7 +6,7 @@ This document is separated in two sections:
    - Runs all relevant services on the same instance. 
    - Instance must meet the [Hardware Requirements](/README.md#hardware-requirements). 
    - Instance needs to have Docker and Docker compose installed and working. Check the [official Docker website](https://docs.docker.com/compose/install/) 
-   - needs to have an active `Jellyfin`|`Navidrome`|`Lyrion`|`Emby`|`AudioMuse-AI-MusicServer` on the same or a separate instance
+   - needs to have an active `Jellyfin`|`Navidrome`|`Lyrion`|`Emby` on the same or a separate instance
 2. [**Server + Worker Solution (Advanced Setup)**](#server--worker-solution-advanced-setup)
    - can run each service on a separate instance. (Redis, Postgres, Flask App, Worker). In the advanced example a 2 machine setup is shown that
      features Redis, Postgres and the Flask App one (server) instance and the worker on a separate (worker) instance. 
