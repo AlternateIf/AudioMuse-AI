@@ -20,6 +20,7 @@ AudioMuse-AI work on both ARM and INTEL architecture and there is an experimenta
 
 You might also check [this](/README.md#hardware-requirements).
 
+---
 
 ### How to deploy AudioMuse-AI?
 
@@ -28,6 +29,7 @@ You can run Audiomuse on either Kubernetes, with Docker or Podman. To read more 
 If you're not able to reach the front-end on **[http://YOUR-IP:8000](http://YOUR-IP:8000)** or the analysis seems to finish without analyzing anything, 
 it usually means that some parameters are missing in your `.env`. In this case take a look at the [.env.example](/deployment/.env.example)
 
+---
 
 ### Can AudioMuse-AI support multiple music libraries?
 
@@ -57,6 +59,8 @@ Running the analysis is **mandatory** before you can use any other features.
 
 Make sure to also check the Setup Chapter in the [README](/README.md#setup)
 
+---
+
 ### How long does the analysis take? What if it gets interrupted midway?
 
 The time required for the analysis depends on several factors, such as the number of songs to analyze and the hardware on which AudioMuse-AI is running.
@@ -64,6 +68,8 @@ The time required for the analysis depends on several factors, such as the numbe
 Depending on these factors, it can take anywhere from a few hours to several days. 
 
 Already analyzed songs are stored in the database. If the process is interrupted, you can restart it and only missing songs will be analyzed.
+
+---
 
 ### Clustering returns empty playlist or with only a few songs. How can I fix this?
 
@@ -80,10 +86,14 @@ If your clusters are too small or is empty, you can adjust the following values 
 
 You can learn more about the Config Params [here](/docs/Config-Params.md)
 
+---
+
 ### Clustering returns clusters with big number of songs. How can I fix this?
 
 You can raise the `Stratified Sampling Target Percentile`, `min clusters` and `max clusters` values in the advanced parameter view. 
 Check the [entry](#clustering-returns-empty-playlist-or-with-only-a-few-songs-how-can-i-fix-this) above.
+
+---
 
 ### Clustering takes a lot of time, how can I make it run faster?
 
