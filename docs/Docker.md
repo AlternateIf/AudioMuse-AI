@@ -16,7 +16,7 @@ This document is separated in two sections:
    - Both instances need to have Docker and Docker Compose installed. Check the [official Docker website](https://docs.docker.com/compose/install/) 
    - needs to have an active `Jellyfin`|`Navidrome`|`Lyrion`|`Emby` on the same or a separate instance
 
-> The **Image Tagging Strategy** can be found [here](docs/Image-Tagging.md)
+> The **Image Tagging Strategy** can be found [here](/docs/Image-Tagging.md)
 
 ## All-In-One Solution (Basic Setup)
 
